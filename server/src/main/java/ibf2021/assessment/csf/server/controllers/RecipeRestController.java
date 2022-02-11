@@ -65,6 +65,7 @@ public class RecipeRestController {
     public ResponseEntity<String> addRecipe() {
 
         //TODO PROCESS THE INPUT FROM CLIENT AND SAVE TO RECIPE DATABASE
+        // USE @Requestbody AND MULTIVALUE MAP PROCESS POST FROM CLIENT
 
         JsonObjectBuilder payload = Json.createObjectBuilder();
         payload.add("message", "Recipe saved");

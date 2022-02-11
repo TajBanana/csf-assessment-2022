@@ -1,1 +1,51 @@
-<p>recipeadd works!</p>
+<form (ngSubmit)="submitRecipe()" [formGroup]="recipeForm">
+  <tr>
+    <td>
+      <label for="Title">Title</label>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <input type="text" id="Title" formControlName="title">
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <label for="Ingredients">Add ingredients: </label>
+    </td>
+  </tr>
+  <tr>
+    <input type="text" id="Ingredients">
+    <button type="button" (click)="addIngredient()">+</button>
+    <li *ngFor="let ingredient of ingredientsArray; index as i">
+      {{ingredient}} {{i}}
+    </li>
+  </tr>
+
+  <tr>
+    <td>
+      <label for="Instruction">Instruction</label>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <textarea id="Instruction" cols="25" rows="5" formControlName="instruction"></textarea>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <label for="Image">Image URL:</label>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+      <input type="text" id="Image" formControlName="image">
+    </td>
+  </tr>
+  <button (click)="back()">back</button>
+  <button type="submit" [disabled]="false">add</button>
+</form>

@@ -69,8 +69,10 @@ public class RecipeRestController {
         JsonObjectBuilder payload = Json.createObjectBuilder();
         payload.add("message", "Recipe saved");
 
-        return ResponseEntity.status(HttpStatus.ACCEPTED).contentType(MediaType.APPLICATION_JSON).body(payload.build().toString());    }
+        System.out.println(">>>> POST: GOT YOUR RECIPE");
+        return ResponseEntity.status(HttpStatus.ACCEPTED)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(payload.build().toString());
     }
-
 
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {FormArray, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {RecipeService} from "../recipe.service";
-import {RecipeDetails} from "../model";
+import {RecipeDetails, RecipePostDetails} from "../model";
 
 @Component({
   selector: 'app-recipeadd',
@@ -11,8 +11,8 @@ import {RecipeDetails} from "../model";
 })
 export class RecipeaddComponent implements OnInit   {
 
-  recipeForm: FormGroup;
-  recipePostResponse: string = 'empty';
+  recipeForm!: FormGroup;
+  recipePostResponse: string = '';
 
   constructor(private router: Router, private fb: FormBuilder, private recipeSvc: RecipeService) { }
 
@@ -41,9 +41,11 @@ export class RecipeaddComponent implements OnInit   {
     this.ingredient.removeAt(i);
   }
 
-  submitRecipe() {
-    const recipe = this.recipeForm.value as RecipeDetails;
+  async submitRecipe() {
+    const recipe = this.recipeForm.value as RecipePostDetails;
     console.info('>>> recipe form details: ', recipe);
+    await this.recipeSvc.postRecipeForm(recipe).then(r => this.recipePostResponse = r)
+    alert(this.recipePostResponse)
     this.recipeForm.reset();
     this.back()
   }

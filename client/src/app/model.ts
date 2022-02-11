@@ -10,3 +10,12 @@ export interface RecipeDetails {
   Instruction: string
 
 }
+
+export interface RecipePostDetails {
+  title: string;
+  image: string;
+  ingredients: string;
+  instruction: string
+
+}
+

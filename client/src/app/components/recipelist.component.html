@@ -1,0 +1,5 @@
+
+<div *ngFor="let recipe of recipeList">
+  <p (click)="go(recipe)" >{{recipe.Title}}</p>
+</div>
+<button type="button" (click)="add()">add</button>

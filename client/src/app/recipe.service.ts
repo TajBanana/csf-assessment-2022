@@ -13,11 +13,18 @@ export class RecipeService {
     }
 
   getAllRecipes(): Promise<Recipe[]> {
-      return lastValueFrom(this.http.get<Recipe[]>('http://localhost:8080/'))
+    // return lastValueFrom(this.http.get<Recipe[]>('http://localhost:8080/'))
+
+    // FOR HEROKU DEPLOYMENT
+    return lastValueFrom(this.http.get<Recipe[]>('/'))
     }
 
   getRecipeById(recipeId): Promise<RecipeDetails> {
-    return lastValueFrom(this.http.get<RecipeDetails>(`http://localhost:8080/recipe/${recipeId}`))
+    // return lastValueFrom(this.http.get<RecipeDetails>(`http://localhost:8080/recipe/${recipeId}`))
+
+    // FOR HEROKU DEPLOYMENT
+    return lastValueFrom(this.http.get<RecipeDetails>(`/recipe/${recipeId}`))
+
   }
 
   postRecipeForm(recipePostDetails:RecipePostDetails): Promise<string> {

@@ -10,16 +10,12 @@
     </td>
   </tr>
 
-  <tr>
-    <td>
-      <label for="Ingredients">Add ingredients: </label>
-    </td>
-  </tr>
-  <tr>
-    <input type="text" id="Ingredients">
-    <button type="button" (click)="addIngredient()">+</button>
-    <li *ngFor="let ingredient of ingredientsArray; index as i">
-      {{ingredient}} {{i}}
+  <tr formArrayName="ingredient">
+    <span>Ingredients</span>
+    <button type="button" (click)="addIngredient()" style="font-weight: bold">+</button>
+    <li *ngFor="let ingredient of ingredient.controls; let i=index">
+      <input id="ingredient-{{ i }}" type="text" [formControlName]="i">
+      <button type="button" (click)="removeIngredient(i)">X</button>
     </li>
   </tr>
 
@@ -47,5 +43,5 @@
     </td>
   </tr>
   <button (click)="back()">back</button>
-  <button type="submit" [disabled]="false">add</button>
+  <button type="submit" [disabled]="!recipeForm.valid">add: {{recipeForm.valid}}</button>
 </form>

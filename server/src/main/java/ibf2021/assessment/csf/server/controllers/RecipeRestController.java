@@ -6,14 +6,11 @@ import ibf2021.assessment.csf.server.models.Recipe;
 import ibf2021.assessment.csf.server.services.RecipeService;
 import jakarta.json.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -62,23 +59,18 @@ public class RecipeRestController {
                 .build();
 
         return ResponseEntity.badRequest().build();
-
-
-   /*     for (Recipe recipe : recipeList) {
-
-            recipeObjectBuilder = recipeObjectBuilder
-                    .add("Id", recipe.getId())
-                    .add("Title", recipe.getTitle());
-
-            recipeArrayBuilder.add(recipeObjectBuilder);
-        }
-
-        System.out.println(recipeObjectBuilder.build());
-
-        JsonArray recipeArray = recipeArrayBuilder.build();
-        System.out.println(recipeArray);
-
-
-        return ResponseEntity.ok(recipeArray.toString());*/
     }
+
+    @PostMapping
+    public ResponseEntity<String> addRecipe() {
+
+        //TODO PROCESS THE INPUT FROM CLIENT AND SAVE TO RECIPE DATABASE
+
+        JsonObjectBuilder payload = Json.createObjectBuilder();
+        payload.add("message", "Recipe saved");
+
+        return ResponseEntity.status(HttpStatus.ACCEPTED).contentType(MediaType.APPLICATION_JSON).body(payload.build().toString());    }
+    }
+
+
 }
